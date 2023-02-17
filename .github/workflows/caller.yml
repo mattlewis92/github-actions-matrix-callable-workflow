@@ -1,0 +1,17 @@
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy-microservices:
+    name: Deploy ${{ matrix.service.name }}
+    uses: ./.github/workflows/callable.yml
+    secrets: inherit
+    strategy:
+      fail-fast: false
+      matrix:
+        service: [
+          { name: task-service },
+        ]
+    with:
+      service-name: ${{ matrix.service.name }}

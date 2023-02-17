@@ -1,0 +1,15 @@
+on:
+  workflow_call:
+    inputs:
+      service-name:
+        required: true
+        type: string
+jobs:
+  docker-build:
+    name: Build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Echo service name
+        run: echo "${{ inputs.service-name }}
